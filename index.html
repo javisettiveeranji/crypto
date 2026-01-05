@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CryptoPulse | Mobile-Responsive Tracker</title>
+    <title>CryptoPulse | Pro Tracker</title>
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -40,145 +40,98 @@
             line-height: 1.5;
         }
 
-        .container { 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            padding: 1rem; 
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 1rem; }
 
         /* --- NAVBAR --- */
         .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 1rem;
-            height: var(--nav-height);
-            background: var(--card-bg);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 1rem; height: var(--nav-height);
+            background: var(--card-bg); border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 100;
+            backdrop-filter: blur(10px);
         }
-        .logo {  font-size: 1.25rem; font-weight: 700; 
-            
-        }
+        .logo { font-size: 1.25rem; font-weight: 700; }
         .logo span { color: var(--accent); }
 
         .nav-actions { display: flex; gap: 10px; align-items: center; }
 
         #searchInput {
-            padding: 0.5rem 0.8rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            background: var(--bg-color);
-            color: var(--text-main);
-            outline: none;
-            width: 140px; /* Smaller for mobile */
-            transition: width 0.3s ease;
+            padding: 0.5rem 0.8rem; border-radius: 8px;
+            border: 1px solid var(--border); background: var(--bg-color);
+            color: var(--text-main); outline: none; width: 140px;
+            transition: all 0.3s ease;
         }
-        #searchInput:focus { width: 180px; border-color: var(--accent); }
+        #searchInput:focus { width: 180px; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2); }
 
         #themeToggle {
-            background: none;
-            border: 1px solid var(--border);
-            padding: 0.5rem;
-            border-radius: 8px;
-            cursor: pointer;
-            color: var(--text-main);
-            font-size: 1.2rem;
+            background: none; border: 1px solid var(--border);
+            padding: 0.5rem; border-radius: 8px; cursor: pointer;
+            color: var(--text-main); font-size: 1.2rem;
         }
 
         /* --- CHART SECTION --- */
         .card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 1.25rem;
-            border: 1px solid var(--border);
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            background: var(--card-bg); border-radius: 16px;
+            padding: 1.25rem; border: 1px solid var(--border);
+            margin-bottom: 1.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
-        .chart-container { height: 350px; } /* Set height for chart */
+        .chart-container { height: 350px; position: relative; }
 
         .chart-header { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 1rem; 
-            margin-bottom: 1rem; 
+            display: flex; flex-direction: column; 
+            gap: 1rem; margin-bottom: 1rem; 
         }
 
         .selected-coin-info { display: flex; align-items: center; gap: 10px; }
-        .selected-coin-info img { width: 32px; height: 32px; }
-        .selected-coin-info h2 { font-size: 1.1rem; }
+        .selected-coin-info img { width: 32px; height: 32px; border-radius: 50%; }
 
-        .time-filters { display: flex; gap: 5px; }
+        .time-filters { display: flex; gap: 5px; background: var(--bg-color); padding: 4px; border-radius: 8px; }
         .time-filters button {
-            flex: 1;
-            padding: 0.4rem;
-            font-size: 0.8rem;
-            border: 1px solid var(--border);
-            background: transparent;
-            color: var(--text-main);
-            cursor: pointer;
-            border-radius: 6px;
+            flex: 1; padding: 0.4rem 0.8rem; font-size: 0.8rem; font-weight: 600;
+            border: none; background: transparent; color: var(--text-muted);
+            cursor: pointer; border-radius: 6px; transition: 0.2s;
         }
-        .time-filters button.active { 
-            background: var(--accent); 
-            color: white; 
-            border-color: var(--accent); 
-        }
+        .time-filters button.active { background: var(--accent); color: white; }
 
         /* --- GRID & CARDS --- */
-        .crypto-grid {
-            display: grid;
-            grid-template-columns: 1fr; /* Mobile: 1 column */
-            gap: 1rem;
-        }
+        .crypto-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
 
         .coin-card {
-            background: var(--card-bg);
-            padding: 1rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
+            background: var(--card-bg); padding: 1rem;
+            border-radius: 12px; border: 1px solid var(--border);
+            display: flex; justify-content: space-between;
+            align-items: center; cursor: pointer; transition: transform 0.2s, border-color 0.2s;
         }
+        .coin-card:hover { transform: translateY(-2px); border-color: var(--accent); }
 
         .coin-info { display: flex; align-items: center; gap: 0.75rem; }
         .coin-info img { width: 32px; height: 32px; }
-        .coin-info h3 { font-size: 1rem; }
         
         .price-details { text-align: right; }
         .price { font-weight: 700; font-size: 0.95rem; }
-        .change { font-size: 0.85rem; font-weight: 600; }
+        .change { font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; justify-content: flex-end; gap: 2px; }
         .up { color: var(--success); }
         .down { color: var(--danger); }
 
-        /* --- UTILS --- */
-        .spinner {
-            width: 40px; height: 40px;
-            border: 4px solid var(--border);
-            border-top-color: var(--accent);
-            border-radius: 50%;
-            animation: spin 1s infinite linear;
-            margin: 2rem auto;
+        /* --- SKELETON LOADING --- */
+        .skeleton {
+            background: linear-gradient(90deg, var(--border) 25%, var(--card-bg) 50%, var(--border) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 4px;
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .hidden { display: none; }
-        .error-msg { color: var(--danger); text-align: center; padding: 1rem; }
+        @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
-        /* --- DESKTOP BREAKPOINTS --- */
+        .hidden { display: none; }
+        .error-msg { color: var(--danger); text-align: center; padding: 2rem; border: 1px dashed var(--danger); border-radius: 12px; }
+
         @media (min-width: 768px) {
             .container { padding: 2rem; }
             .chart-header { flex-direction: row; justify-content: space-between; }
             .crypto-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
             #searchInput { width: 250px; }
             #searchInput:focus { width: 300px; }
-            .coin-card { flex-direction: column; align-items: flex-start; }
-            .price-details { text-align: left; margin-top: 1rem; width: 100%; display: flex; justify-content: space-between; }
-            .selected-coin-info h2 { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -187,8 +140,8 @@
     <nav class="navbar">
         <div class="logo">Crypto<span>Pulse</span></div>
         <div class="nav-actions">
-            <input type="text" id="searchInput" placeholder="Search...">
-            <button id="themeToggle" title="Toggle Light/Dark Mode">🌓</button>
+            <input type="text" id="searchInput" placeholder="Search coins...">
+            <button id="themeToggle" aria-label="Toggle Theme">🌓</button>
         </div>
     </nav>
 
@@ -197,7 +150,10 @@
             <div class="chart-header">
                 <div class="selected-coin-info">
                     <img id="activeCoinLogo" src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png" alt="">
-                    <h2 id="activeCoinName">Bitcoin</h2>
+                    <div>
+                        <h2 id="activeCoinName">Bitcoin</h2>
+                        <p id="activeCoinPrice" style="font-size: 0.9rem; color: var(--accent); font-weight: 600;">Loading...</p>
+                    </div>
                 </div>
                 <div class="time-filters">
                     <button class="filter-btn active" data-days="1">24H</button>
@@ -210,11 +166,15 @@
             </div>
         </section>
 
-        <div id="loading" class="spinner"></div>
-        <div id="errorMessage" class="error-msg hidden">API limit reached. Please wait a minute and refresh.</div>
+        <div id="loadingGrid" class="crypto-grid">
+            </div>
         
-        <section class="crypto-grid" id="cryptoGrid">
-            </section>
+        <div id="errorMessage" class="error-msg hidden">
+            <p>⚠️ API limit reached or connection error.</p>
+            <button onclick="location.reload()" style="margin-top:10px; padding: 5px 15px; cursor:pointer;">Retry</button>
+        </div>
+        
+        <section class="crypto-grid" id="cryptoGrid"></section>
     </main>
 
     <script>
@@ -224,35 +184,52 @@
         let currentCoinId = 'bitcoin';
 
         const cryptoGrid = document.getElementById('cryptoGrid');
+        const loadingGrid = document.getElementById('loadingGrid');
         const searchInput = document.getElementById('searchInput');
         const themeToggle = document.getElementById('themeToggle');
-        const loading = document.getElementById('loading');
 
-        // Fetch Markets
+        // Initialize Skeleton Screen
+        function showSkeletons() {
+            loadingGrid.innerHTML = Array(12).fill(0).map(() => `
+                <div class="coin-card" style="height: 80px; opacity: 0.5;">
+                    <div class="skeleton" style="width: 40px; height: 40px; border-radius: 50%;"></div>
+                    <div style="flex:1; margin-left: 10px;">
+                        <div class="skeleton" style="width: 60%; height: 12px; margin-bottom: 8px;"></div>
+                        <div class="skeleton" style="width: 40%; height: 10px;"></div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
         async function fetchTopCoins() {
             try {
-                loading.classList.remove('hidden');
+                showSkeletons();
                 const response = await fetch(`${API_BASE}/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=12&page=1&sparkline=false`);
-                if (!response.ok) throw new Error("API Error");
+                if (!response.ok) throw new Error("Rate limit");
                 
                 cryptoData = await response.json();
+                loadingGrid.classList.add('hidden');
                 displayCoins(cryptoData);
                 
-                // Set initial chart
-                const btc = cryptoData.find(c => c.id === 'bitcoin') || cryptoData[0];
-                updateChart(btc.id, btc.name, btc.image);
+                const btc = cryptoData.find(c => c.id === currentCoinId) || cryptoData[0];
+                updateChart(btc.id, btc.name, btc.image, 1, btc.current_price);
             } catch (error) {
                 document.getElementById('errorMessage').classList.remove('hidden');
-            } finally {
-                loading.classList.add('hidden');
+                loadingGrid.classList.add('hidden');
             }
         }
 
         function displayCoins(coins) {
-            cryptoGrid.innerHTML = coins.map(coin => `
-                <div class="coin-card" onclick="handleCoinClick('${coin.id}', '${coin.name}', '${coin.image}')">
+            if(coins.length === 0) {
+                cryptoGrid.innerHTML = `<p style="text-align:center; grid-column: 1/-1; padding: 2rem; color: var(--text-muted);">No results found.</p>`;
+                return;
+            }
+            cryptoGrid.innerHTML = coins.map(coin => {
+                const isUp = coin.price_change_percentage_24h >= 0;
+                return `
+                <div class="coin-card" onclick="handleCoinClick('${coin.id}', '${coin.name}', '${coin.image}', ${coin.current_price})">
                     <div class="coin-info">
-                        <img src="${coin.image}" alt="${coin.name}" loading="lazy">
+                        <img src="${coin.image}" alt="">
                         <div>
                             <h3>${coin.name}</h3>
                             <p style="color: var(--text-muted); font-size: 0.8rem;">${coin.symbol.toUpperCase()}</p>
@@ -260,28 +237,21 @@
                     </div>
                     <div class="price-details">
                         <p class="price">$${coin.current_price.toLocaleString()}</p>
-                        <p class="change ${coin.price_change_percentage_24h >= 0 ? 'up' : 'down'}">
-                            ${coin.price_change_percentage_24h > 0 ? '+' : ''}${coin.price_change_percentage_24h.toFixed(2)}%
+                        <p class="change ${isUp ? 'up' : 'down'}">
+                            ${isUp ? '▲' : '▼'} ${Math.abs(coin.price_change_percentage_24h).toFixed(2)}%
                         </p>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
         }
 
-        // Search
-        searchInput.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            const filtered = cryptoData.filter(coin => 
-                coin.name.toLowerCase().includes(term) || coin.symbol.toLowerCase().includes(term)
-            );
-            displayCoins(filtered);
-        });
-
-        // Chart Update
-        async function updateChart(coinId, name, logo, days = 1) {
+        async function updateChart(coinId, name, logo, days = 1, currentPrice) {
             currentCoinId = coinId;
             document.getElementById('activeCoinName').innerText = name;
             document.getElementById('activeCoinLogo').src = logo;
+            if(currentPrice) {
+                document.getElementById('activeCoinPrice').innerText = `$${currentPrice.toLocaleString()}`;
+            }
 
             try {
                 const response = await fetch(`${API_BASE}/coins/${coinId}/market_chart?vs_currency=usd&days=${days}`);
@@ -289,7 +259,7 @@
                 
                 const labels = data.prices.map(p => {
                     const date = new Date(p[0]);
-                    return days === 1 ? date.toLocaleTimeString([], { hour: '2-digit' }) : date.toLocaleDateString([], { month: 'short', day: 'numeric' });
+                    return days === 1 ? date.toLocaleTimeString([], { hour: '2-digit', minute:'2-digit' }) : date.toLocaleDateString([], { month: 'short', day: 'numeric' });
                 });
                 const prices = data.prices.map(p => p[1]);
 
@@ -305,46 +275,64 @@
                             borderColor: '#38bdf8',
                             borderWidth: 2,
                             pointRadius: 0,
-                            tension: 0.4,
+                            pointHoverRadius: 5,
+                            tension: 0.3,
                             fill: true,
                             backgroundColor: (context) => {
-                                const bg = context.chart.ctx.createLinearGradient(0, 0, 0, 400);
-                                bg.addColorStop(0, 'rgba(56, 189, 248, 0.2)');
-                                bg.addColorStop(1, 'rgba(56, 189, 248, 0)');
-                                return bg;
+                                const gradient = context.chart.ctx.createLinearGradient(0, 0, 0, 400);
+                                gradient.addColorStop(0, 'rgba(56, 189, 248, 0.2)');
+                                gradient.addColorStop(1, 'rgba(56, 189, 248, 0)');
+                                return gradient;
                             }
                         }]
                     },
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
-                        plugins: { legend: { display: false } },
+                        plugins: { 
+                            legend: { display: false },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false,
+                                callbacks: { label: (ctx) => ` $${ctx.raw.toLocaleString()}` }
+                            }
+                        },
                         scales: {
-                            x: { display: true, ticks: { maxTicksLimit: 6, color: '#94a3b8' }, grid: { display: false } },
-                            y: { display: true, ticks: { color: '#94a3b8' }, grid: { color: 'rgba(148, 163, 184, 0.1)' } }
+                            x: { ticks: { maxTicksLimit: 6, color: '#94a3b8' }, grid: { display: false } },
+                            y: { ticks: { color: '#94a3b8', callback: (val) => '$' + val.toLocaleString() }, grid: { color: 'rgba(148, 163, 184, 0.1)' } }
                         }
                     }
                 });
-            } catch (err) { console.error("Chart error:", err); }
+            } catch (err) { console.error("Chart fetch failed"); }
         }
 
-        function handleCoinClick(id, name, logo) {
-            updateChart(id, name, logo, document.querySelector('.filter-btn.active').dataset.days);
+        function handleCoinClick(id, name, logo, price) {
+            const days = document.querySelector('.filter-btn.active').dataset.days;
+            updateChart(id, name, logo, days, price);
+            // Reset search view on click
+            if(searchInput.value !== "") {
+                searchInput.value = "";
+                displayCoins(cryptoData);
+            }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Time Filters
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const filtered = cryptoData.filter(coin => 
+                coin.name.toLowerCase().includes(term) || coin.symbol.toLowerCase().includes(term)
+            );
+            displayCoins(filtered);
+        });
+
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelector('.filter-btn.active').classList.remove('active');
                 this.classList.add('active');
-                const name = document.getElementById('activeCoinName').innerText;
-                const logo = document.getElementById('activeCoinLogo').src;
-                updateChart(currentCoinId, name, logo, this.dataset.days);
+                updateChart(currentCoinId, document.getElementById('activeCoinName').innerText, document.getElementById('activeCoinLogo').src, this.dataset.days);
             });
         });
 
-        // Theme Toggle
         themeToggle.addEventListener('click', () => {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             const newTheme = isDark ? 'light' : 'dark';
@@ -352,7 +340,6 @@
             localStorage.setItem('crypto-theme', newTheme);
         });
 
-        // Init
         const savedTheme = localStorage.getItem('crypto-theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
         fetchTopCoins();
