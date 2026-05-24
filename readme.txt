@@ -27,3 +27,5 @@ Chart.js: For rendering the high-performance price trend lines.
 
 CoinGecko API: The world's most comprehensive independent cryptocurrency data source.
 sdfgbnmnbgfvdrtngffnb
+
+
