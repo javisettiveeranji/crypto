@@ -26,3 +26,4 @@ JavaScript (ES6+): Fetch API for asynchronous data handling and DOM manipulation
 Chart.js: For rendering the high-performance price trend lines.
 
 CoinGecko API: The world's most comprehensive independent cryptocurrency data source.
+sdfgbnmnbgfvdrtngffnb
